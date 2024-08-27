@@ -68,7 +68,7 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; /* Darker shade for hover */
 }
 
 button:active {
@@ -82,13 +82,34 @@ button:active {
   margin: 10px 0; /* Reduced margin */
 }
 
+/* Spinner Animation */
+.spinner {
+  display: none; /* Hidden by default */
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #007bff;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto; /* Center the spinner */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 #treeView {
   margin-top: 10px; /* Minimized top margin */
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 10px;
-  max-height: 400px; /* Reduced height */
+  max-height: 360px; /* 10% shorter from 400px */
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -110,6 +131,15 @@ button:active {
   background-color: #f8d7da; /* Light red */
 }
 
+/* Hover Styles */
+.jstree-default .jstree-node.uptrend:hover {
+  background-color: #c3e6cb; /* Slightly darker green */
+}
+
+.jstree-default .jstree-node.downtrend:hover {
+  background-color: #f5c6cb; /* Slightly darker red */
+}
+
 .jstree-default .jstree-node:hover {
-  background-color: #e9ecef;
+  background-color: #e9ecef; /* Light grey for other nodes */
 }
