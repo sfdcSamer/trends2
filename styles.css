@@ -9,15 +9,23 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
 header {
   width: 100%;
   background-color: #007bff;
   color: white;
-  padding: 20px 0;
+  padding: 10px 0;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 80px; /* Limit the height of the banner */
+  overflow: hidden; /* Hide overflow if any */
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
 }
 
 main {
@@ -65,8 +73,12 @@ button:active {
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 10px;
+  max-height: 500px; /* Limit the height of the TreeView */
+  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-x: hidden; /* Hide horizontal scrolling */
 }
 
+/* jstree Specific Styles */
 .jstree-default .jstree-node {
   padding: 10px;
   border-bottom: 1px solid #ddd;
