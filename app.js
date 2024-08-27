@@ -18,19 +18,45 @@ $(document).ready(function () {
         const data = results.data;
         const trends = calculateTrends(data);
 
-        $('#treeView').jstree({
-          core: {
-            data: transformDataToJsTreeFormat(trends),
-          },
-        });
+        $('#treeView')
+          .jstree({
+            core: {
+              data: transformDataToJsTreeFormat(trends),
+            },
+            plugins: ['wholerow'], // Optional: Better row styling
+          })
+          .on('loaded.jstree', function () {
+            // Use a timeout to ensure the tree is fully rendered
+            setTimeout(() => {
+              // Find the last node
+              const lastNode = $('#treeView').jstree(
+                'get_node',
+                $('#treeView').jstree('get_container').find('li').last()
+              );
 
-        // Hide loading animation
-        $('#loading').hide();
+              if (lastNode) {
+                // Expand the last node
+                $('#treeView').jstree('open_node', lastNode);
+
+                // Scroll to the last node
+                const lastNodeElement = $('#' + lastNode.id);
+                if (lastNodeElement.length) {
+                  $('#treeView').scrollTop(
+                    lastNodeElement.offset().top -
+                      $('#treeView').offset().top +
+                      $('#treeView').scrollTop()
+                  );
+                }
+              }
+
+              // Hide loading animation
+              $('#loading').hide();
+            }, 100); // Adjust the timeout as needed
+          });
       },
       error: function (error) {
         console.error('Error parsing CSV file:', error);
         $('#loading').hide();
-        alert('An error occurred while processing the file. Please try again.');
       },
     });
   }
@@ -53,9 +79,9 @@ $(document).ready(function () {
     const trends = [];
     let currentTrend = null;
 
-    data.forEach((item, i) => {
+    for (let i = 0; i < data.length - 1; i++) {
+      const item = data[i];
       const nextItem = data[i + 1];
-      if (!nextItem) return;
 
       // Determine if we are in an uptrend or downtrend
       const isUpTrend = item.High < nextItem.High && item.Low < nextItem.Low;
@@ -82,7 +108,7 @@ $(document).ready(function () {
           currentTrend = null;
         }
       }
-    });
+    }
 
     if (currentTrend) trends.push(currentTrend);
 
