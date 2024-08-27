@@ -19,8 +19,8 @@ header {
   padding: 10px 0;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-height: 80px; /* Limit the height of the banner */
-  overflow: hidden; /* Hide overflow if any */
+  max-height: 80px;
+  overflow: hidden;
 }
 
 header h1 {
@@ -32,12 +32,18 @@ main {
   flex: 1;
   width: 100%;
   max-width: 1200px;
-  padding: 20px;
+  padding: 10px; /* Reduced padding to minimize space */
   box-sizing: border-box;
 }
 
+.file-controls {
+  display: flex; /* Use flexbox to align file input and buttons */
+  align-items: center; /* Center items vertically */
+  gap: 10px; /* Space between items */
+  margin-bottom: 10px; /* Margin below the controls */
+}
+
 input[type='file'] {
-  margin: 20px 0;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -45,7 +51,8 @@ input[type='file'] {
 }
 
 .controls {
-  margin: 20px 0;
+  display: flex; /* Align buttons in a row */
+  gap: 10px; /* Space between buttons */
 }
 
 button {
@@ -57,6 +64,7 @@ button {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  flex: 1; /* Make buttons the same size */
 }
 
 button:hover {
@@ -67,15 +75,22 @@ button:active {
   transform: scale(0.98);
 }
 
+#loading {
+  display: none; /* Hidden by default */
+  font-size: 18px;
+  color: #007bff;
+  margin: 10px 0; /* Reduced margin */
+}
+
 #treeView {
-  margin-top: 20px;
+  margin-top: 10px; /* Minimized top margin */
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 10px;
-  max-height: 500px; /* Limit the height of the TreeView */
-  overflow-y: auto; /* Enable vertical scrolling */
-  overflow-x: hidden; /* Hide horizontal scrolling */
+  max-height: 400px; /* Reduced height */
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* jstree Specific Styles */
@@ -85,6 +100,14 @@ button:active {
   border-radius: 5px;
   margin: 5px 0;
   transition: background-color 0.3s ease;
+}
+
+.jstree-default .jstree-node.uptrend {
+  background-color: #d4edda; /* Light green */
+}
+
+.jstree-default .jstree-node.downtrend {
+  background-color: #f8d7da; /* Light red */
 }
 
 .jstree-default .jstree-node:hover {
