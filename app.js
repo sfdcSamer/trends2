@@ -30,6 +30,7 @@ $(document).ready(function () {
       error: function (error) {
         console.error('Error parsing CSV file:', error);
         $('#loading').hide();
+        alert('An error occurred while processing the file. Please try again.');
       },
     });
   }
@@ -52,9 +53,9 @@ $(document).ready(function () {
     const trends = [];
     let currentTrend = null;
 
-    for (let i = 0; i < data.length - 1; i++) {
-      const item = data[i];
+    data.forEach((item, i) => {
       const nextItem = data[i + 1];
+      if (!nextItem) return;
 
       // Determine if we are in an uptrend or downtrend
       const isUpTrend = item.High < nextItem.High && item.Low < nextItem.Low;
@@ -81,7 +82,7 @@ $(document).ready(function () {
           currentTrend = null;
         }
       }
-    }
+    });
 
     if (currentTrend) trends.push(currentTrend);
 

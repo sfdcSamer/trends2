@@ -4,30 +4,47 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stock Data Viewer</title>
+
+    <!-- Stylesheets -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/themes/default/style.min.css"
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
+
   <body>
     <header>
       <h1>Stock Data Viewer</h1>
     </header>
+
     <main>
       <div class="file-controls">
-        <input type="file" id="fileInput" accept=".csv" />
+        <input
+          type="file"
+          id="fileInput"
+          accept=".csv"
+          aria-label="Upload CSV file"
+        />
         <div class="controls">
-          <button id="expandAll">Expand All</button>
-          <button id="collapseAll">Collapse All</button>
+          <button id="expandAll" aria-label="Expand all items">
+            Expand All
+          </button>
+          <button id="collapseAll" aria-label="Collapse all items">
+            Collapse All
+          </button>
         </div>
       </div>
-      <div id="loading" class="loading">Processing...</div>
-      <div id="treeView"></div>
+      <div id="loading" class="loading" role="status">Processing...</div>
+      <div id="treeView" role="tree" aria-label="Stock data tree view"></div>
     </main>
+
+    <!-- JavaScript Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.3.12/jstree.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
+    <!-- Application Script -->
     <script src="app.js"></script>
   </body>
 </html>

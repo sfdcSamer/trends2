@@ -15,7 +15,7 @@ body {
 header {
   width: 100%;
   background-color: #007bff;
-  color: white;
+  color: #fff;
   padding: 10px 0;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -28,70 +28,84 @@ header h1 {
   font-size: 24px;
 }
 
+/* Main Content */
 main {
   flex: 1;
   width: 100%;
   max-width: 1200px;
-  padding: 10px; /* Reduced padding to minimize space */
+  padding: 20px; /* Increased padding for better spacing */
   box-sizing: border-box;
 }
 
+/* File Controls */
 .file-controls {
-  display: flex; /* Use flexbox to align file input and buttons */
-  align-items: center; /* Center items vertically */
-  gap: 10px; /* Space between items */
-  margin-bottom: 10px; /* Margin below the controls */
+  display: flex;
+  flex-direction: column; /* Stack controls vertically on smaller screens */
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px; /* Increased margin for better spacing */
 }
 
 input[type='file'] {
-  padding: 10px;
+  padding: 8px;
   border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 16px;
+  width: 100%; /* Make file input full-width on smaller screens */
+  max-width: 300px; /* Limit width for larger screens */
 }
 
 .controls {
-  display: flex; /* Align buttons in a row */
-  gap: 10px; /* Space between buttons */
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  max-width: 300px; /* Limit width for larger screens */
 }
 
+/* Buttons */
 button {
   background-color: #007bff;
-  color: white;
+  color: #fff;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  flex: 1; /* Make buttons the same size */
+  flex: 1;
 }
 
 button:hover {
-  background-color: #0056b3; /* Darker shade for hover */
+  background-color: #0056b3;
 }
 
 button:active {
   transform: scale(0.98);
 }
 
+button:focus {
+  outline: 2px solid #0056b3;
+  outline-offset: 2px;
+}
+
+/* Loading Indicator */
 #loading {
-  display: none; /* Hidden by default */
+  display: none;
   font-size: 18px;
   color: #007bff;
-  margin: 10px 0; /* Reduced margin */
+  margin: 20px 0; /* Increased margin for better spacing */
 }
 
 /* Spinner Animation */
 .spinner {
-  display: none; /* Hidden by default */
+  display: none;
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   border-top: 4px solid #007bff;
   width: 40px;
   height: 40px;
   animation: spin 1s linear infinite;
-  margin: 20px auto; /* Center the spinner */
+  margin: 20px auto;
 }
 
 @keyframes spin {
@@ -103,13 +117,14 @@ button:active {
   }
 }
 
+/* Tree View */
 #treeView {
-  margin-top: 10px; /* Minimized top margin */
-  background-color: white;
+  margin-top: 20px; /* Increased margin for better spacing */
+  background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 10px;
-  max-height: 360px; /* 10% shorter from 400px */
+  max-height: 360px;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -142,4 +157,17 @@ button:active {
 
 .jstree-default .jstree-node:hover {
   background-color: #e9ecef; /* Light grey for other nodes */
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+  .file-controls {
+    flex-direction: column; /* Stack file input and buttons vertically on small screens */
+    align-items: stretch;
+  }
+
+  input[type='file'],
+  .controls button {
+    width: 100%; /* Make controls full-width on small screens */
+  }
 }
